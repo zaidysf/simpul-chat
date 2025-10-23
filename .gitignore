@@ -1,0 +1,31 @@
+# Node
+frontend/node_modules
+frontend/dist
+frontend/dist-ssr
+frontend/*.local
+frontend/.env
+
+# Bundler / Rails
+backend/vendor/bundle/
+backend/log/
+backend/tmp/
+backend/.byebug_history
+backend/node_modules/
+backend/.env
+backend/storage/
+backend/.bundle/
+backend/db/*.sqlite3
+backend/db/*.sqlite3-journal
+backend/public/assets
+backend/public/packs
+backend/public/uploads
+backend/.DS_Store
+
+# System
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+.idea/
+.vscode/

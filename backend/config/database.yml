@@ -1,0 +1,41 @@
+<% db_prefix = ENV.fetch("DB_NAME_PREFIX", "simpul_chat") %>
+
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch("DB_USERNAME") { "root" } %>
+  password: <%= ENV.fetch("DB_PASSWORD") { "" } %>
+  host: <%= ENV.fetch("DB_HOST") { "127.0.0.1" } %>
+  port: <%= ENV.fetch("DB_PORT") { 3306 } %>
+  socket: <%= ENV["DB_SOCKET"] %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME_DEVELOPMENT", "#{db_prefix}_development") %>
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME_TEST", "#{db_prefix}_test") %>
+
+production:
+  primary: &primary_production
+    <<: *default
+    database: <%= ENV.fetch("DB_NAME_PRODUCTION", "#{db_prefix}_production") %>
+    username: <%= ENV["BACKEND_DATABASE_USERNAME"] || ENV["DB_USERNAME"] || "backend" %>
+    password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>
+  cache:
+    <<: *primary_production
+    database: <%= ENV.fetch("DB_NAME_PRODUCTION_CACHE", "#{db_prefix}_production_cache") %>
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_production
+    database: <%= ENV.fetch("DB_NAME_PRODUCTION_QUEUE", "#{db_prefix}_production_queue") %>
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_production
+    database: <%= ENV.fetch("DB_NAME_PRODUCTION_CABLE", "#{db_prefix}_production_cable") %>
+    migrations_paths: db/cable_migrate
