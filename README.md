@@ -2,7 +2,7 @@
 
 Simpul Chat is a full-stack real-time chat application delivered as the Software Engineer assessment for **Simpul Technologies**. The project demonstrates how I (Zaid Yasyaf) approach production-ready, real-time experiences using Ruby on Rails, Action Cable, React Query, and Tailwind UI components.
 
-Live demo : https://simple-chat.uncle-z.cloud (Live demo data will reset at 00:00 everyday)
+Live demo : https://simpul-chat.uncle-z.cloud (Live demo data will reset at 00:00 everyday)
 
 ![Simpul Chat Screenshot](simpul-chat-screenshot.png)
 
